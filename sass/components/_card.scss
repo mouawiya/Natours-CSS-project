@@ -1,0 +1,153 @@
+.card {
+
+    //functionality
+    perspective: 150rem;
+    -moz-perspective: 150rem; //to work for Fire Fox
+    position: relative; // we used relative for the absolute positioning 
+    height: 52rem; // the card need a height as the same as the sides
+    
+
+    &__side {
+        height: 52rem;
+        transition: all .8s ease;
+        position: absolute; // we put absolute to get the sides on top of each others
+        top: 0; // no top margging 
+        left: 0; // no left margging
+        width: 100%; // the side is as wide as the entire card
+        backface-visibility: hidden; // this is for hidding the side in the back when the card flip
+        border-radius: 3px;
+        overflow: hidden; /* this is used keep the border radius of the sides since it ot overlapped and lost
+         by the blend between images and backscreen*/
+        box-shadow: 0 1.5rem 4rem rgba($color-black, $alpha: .15);
+
+        &--front {
+            background-color: $color-white; // we don't put rotate here because its the front side
+        }
+
+        &--back {
+            transform: rotateY(180deg);
+            &-1{
+                background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
+            }
+
+            &-2{
+                background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+            }
+
+            &-3{
+                background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark);
+            }
+        }
+    }
+
+    
+
+    &:hover &__side--front {
+        transform: rotateY(-180deg); // we rotate to the -180 degree when we hover over the front side
+    }
+
+    &:hover &__side--back {
+        transform: rotateY(0); //
+    }
+
+    //front side styling
+    &__picture {
+        background-size: cover; // to set the image as a cover for the entire background
+        height: 23rem; // the hieght of the images
+        background-blend-mode: screen; // for blending the below image and the linear gradient
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); // the webkit is used to make the clip path work on different browsers
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); // to make the images inside the sides in the shape of polygon
+        
+        &--1 {
+            background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark), url(../img/nat-5.jpg);
+        }
+
+        &--2 {
+            background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark), url(../img/nat-6.jpg);
+        }
+
+        &--3 {
+            background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark), url(../img/nat-7.jpg);
+        }
+    }
+
+    &__heading { //for the heading of the front sides
+        font-size: 2.8rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        text-align: right;
+        color: $color-white;
+        position: absolute;
+        top: 12rem;
+        right: 2rem;
+        width: 75%;
+    }
+
+    &__heading-span {
+        padding: 1rem 1.5rem; // create space so the head is written in two lines
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone; /* apply all the declarations in the selector (only the padding in this case)
+         to all of the boxes that are created by an element*/
+        &--1 {
+            background-image: linear-gradient(to right bottom, 
+            rgba($color-secondary-light, .85), 
+            rgba($color-secondary-dark, .85));
+        }
+
+        &--2 {
+            background-image: linear-gradient(to right bottom, 
+            rgba($color-primary-light, .85), 
+            rgba($color-primary-dark, .85));
+        }
+
+        &--3 {
+            background-image: linear-gradient(to right bottom, 
+            rgba($color-tertiary-light, .85), 
+            rgba($color-tertiary-dark, .85));
+        }
+    }
+
+    &__details {
+        padding: 3rem; // padding between the start of the details section and the image in above it
+        ul {
+            list-style: none;
+            width: 80%;
+            margin: 0 auto; // this is used to center the lines
+
+            li {
+                text-align: center;
+                font-size: 1.5rem;
+                padding: 1rem; // padding between the text and the underlines
+                &:not(:last-child) {
+                    border-bottom: 1px solid $color-grey-light-2;
+                }
+            }
+        }
+    }
+
+    //back side styling
+    &__cta {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); //this is used to center the entire div inside the card from top and bottom, left and right
+        width: 90%; // this is used to give width to the button because the two words were written in different lines
+        text-align: center;
+    }
+
+    &__price-box {
+        text-align: center;
+        margin: 8rem; // space between the word "only" and the price
+        color: $color-white; // color of the text 
+    }
+
+    &__price-only {
+        font-size: 1.4rem;
+        text-transform: uppercase;
+    }
+
+    &__price-value {
+        font-size: 6rem;
+        font-weight: 100;
+    }
+}
