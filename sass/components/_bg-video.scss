@@ -1,0 +1,21 @@
+.bg-video {
+    position: absolute; /*we use this to put the video behind the section, 
+    the position relative of the parent element is defined in the home.scss file under the section.stories
+    NOTE: we always need to specify the top and left with absolute positioning*/
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    opacity: .15;
+    overflow: hidden; /* use when something overflows an element, in this case is used with the object-fit
+    to make the video vit the parent element which is the stories section*/
+
+    &__content { // this is used to make the video fit exactly the story section, instead of overfit
+        height: 100%;
+        width: 100%;
+        object-fit: cover; /* this will make the video fit the entire size of the parent while still maintaining
+        its aspect ratio and the part that don't fit the parent element will be clipped off, this can also work
+        with images*/
+    }
+}
