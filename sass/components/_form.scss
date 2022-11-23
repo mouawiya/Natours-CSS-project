@@ -1,0 +1,118 @@
+.form {
+    &__group:not(:last-child) { // this to style the marging between input text boxes
+        margin-bottom: 2rem; 
+
+    }
+
+    &__input { //this is to style the input text boxes
+        font-size: 1.5rem;
+        font-family: inherit; //this to make the text inherit the font family which is latto
+        color: inherit; // inherit the color of the text
+        padding: 1.5rem 2rem;
+        border-radius: 2px;
+        background-color: rgba($color-white, .5);
+        border: none;
+        border-bottom: 3px solid transparent; // this to make the input box not jumb down when selected
+        width: 90%;
+        display: block;
+        transition: all .3s; // this is to add a transition for the change of the lines under the input boxes
+
+        &:focus { /*this is for people that uses the Tab button to move inside the page, 
+            in order to indicate which part of the page the user is on*/
+            outline: none; //remove the default black focus border
+            box-shadow: 0 1rem 2rem rgba($color-black, .1); // add a small shadow under the input boxes when focused
+            border-bottom: 3px solid $color-primary; // add a green solid line under the focused input box
+        }
+
+        &:focus:invalid { /* the invalid element will be selected when there is an error with the input
+            for example a missing input, or an email without the "@" symbole, in this case we will add
+            an orange solid line under the input box*/
+            border-bottom: 3px solid $color-secondary-dark;
+        }
+
+        &::-webkit-input-placeholder { /* the is a pseudo elements are defined with " :: " and they represent things
+            that arent actually on the web page, this one is used to style the color of the placeholder*/
+            color: $color-grey-dark-2; // change the placeholder color to grey
+    
+        }
+    }
+
+    &__label { 
+
+        //this are the standard styling of the label
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-left: 2rem;
+        margin-top: .7rem;
+        display: block; // the label needs to be a block like the input, because they are on top of each other
+        transition: all .3s; // this will activate the below placeholder-shown element transition
+    }
+
+    /* this section is to add a label that pop down hen the user start writting 
+    the placeholder-show moves the label below the input box, we used the sibling selector "+" because both
+    the label and the input are adjacent elements and there are only two, if there is more we 
+    need to use the "~". ALSO the ORDER HERE MATTERS in the html, the input needs to be before the label*/
+    &__input:placeholder-shown + &__label {
+        opacity: 0; // this will make the place holder disapear when the user starts typing
+        visibility: hidden; // this will make the place holder GONE when the user starts typing
+        transform: translateY(-4rem); // this will move the place holder below te input box
+    }
+
+    // make the default radio button disapear
+    &__radio-group {
+        width: 49%;
+        display: inline-block;
+    }
+
+    &__radio-input {
+        display: none;
+    }
+
+    &__radio-label {
+        font-size: $default-font-size;
+        cursor: pointer; //this change the cursor when hover over the button and make it look like a link
+        position: relative; // this is for the position absolute of th radio button below
+        padding-left: 4.5rem; // this is to make space between the label and the button
+    }
+
+    
+    &__radio-button {
+
+        // styling the outside green circle around the button
+        height: 3rem;
+        width: 3rem;
+        border: 5px solid $color-primary;
+        border-radius: 50%;
+        display: inline-block;
+        position: absolute; // this to allow the green circle and the label to be on top of each other
+        left: 0;
+        top: -.4rem;
+
+        //styling the inside green dot inside the button
+        &::after {// this is a pseudo element so we need to specify its content and display properties
+            content: "";
+            display: block;
+            height: 1.3rem;
+            width: 1.3rem;
+            border-radius: 50%;
+            position: absolute; // the parent for this can also have "absolute" as a value not the relative
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: $color-primary;
+            opacity: 0; // this is to make the dot inside the green circle disapear at first
+            transition: opacity .2s;
+        }
+    }
+
+    //this section is to make the green dot appear inside the circle when we check the button
+
+    /*the pseudo class checked is used in order to detect as soon as we hit the button, then we simply
+    need to select the sibling of that radio-input class which is radio-label, then select its chlid
+    which is radio-button using the sibling selector " ~ " because thats the one we want to change*/
+
+    &__radio-input:checked ~ &__radio-label &__radio-button::after{
+        opacity: 1; /* we just need to make the green dot inside the green circle visible 
+        in order to give the impression that we selected a button*/
+    }
+}

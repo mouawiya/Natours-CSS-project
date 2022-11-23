@@ -105,22 +105,25 @@ body {
     margin-bottom: 3rem; }
 
 .u-center-text {
-  text-align: center; }
+  text-align: center !important; }
 
 .u-margin-bottom-small {
-  margin-bottom: 1.5rem; }
+  margin-bottom: 1.5rem !important; }
 
 .u-margin-bottom-medium {
-  margin-bottom: 4rem; }
+  margin-bottom: 4rem !important; }
 
 .u-margin-bottom-big {
-  margin-bottom: 8rem; }
+  margin-bottom: 8rem !important; }
+
+.u-margin-top-small {
+  margin-top: 3rem !important; }
 
 .u-margin-top-big {
-  margin-top: 8rem; }
+  margin-top: 8rem !important; }
 
 .u-margin-top-huge {
-  margin-top: 10rem; }
+  margin-top: 10rem !important; }
 
 .bg-video {
   position: absolute;
@@ -132,15 +135,19 @@ body {
   height: 100%;
   width: 100%;
   z-index: -1;
-  opacity: .15; }
+  opacity: .15;
+  overflow: hidden;
+  /* use when something overflows an element, in this case is used with the object-fit
+    to make the video vit the parent element which is the stories section*/ }
   .bg-video__content {
     height: 100%;
     width: 100%;
     object-fit: cover;
     /* this will make the video fit the entire size of the parent while still maintaining
-        its aspect ratio and the part that don't fit the parent element will be clipped off*/ }
+        its aspect ratio and the part that don't fit the parent element will be clipped off, this can also work
+        with images*/ }
 
-.btn:link, .btn:visited {
+.btn, .btn:link, .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
   padding: 1.5rem 4rem;
@@ -148,7 +155,9 @@ body {
   border-radius: 10rem;
   transition: all .2s;
   position: relative;
-  font-size: 1.6rem; }
+  font-size: 1.6rem;
+  border: none;
+  cursor: pointer; }
 
 .btn:hover {
   transform: translateY(-0.3rem);
@@ -157,7 +166,8 @@ body {
     transform: scaleX(1.4) scaleY(1.6);
     opacity: 0; }
 
-.btn:active {
+.btn:active, .btn:focus {
+  outline: none;
   transform: translateY(-0.1rem);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
 
@@ -349,6 +359,91 @@ body {
   .feature-box:hover {
     transform: translateY(-1.5rem) scale(1.03); }
 
+.form {
+  /* this section is to add a label that pop down hen the user start writting 
+    the placeholder-show moves the label below the input box, we used the sibling selector "+" because both
+    the label and the input are adjacent elements and there are only two, if there is more we 
+    need to use the "~". ALSO the ORDER HERE MATTERS in the html, the input needs to be before the label*/
+  /*the pseudo class checked is used in order to detect as soon as we hit the button, then we simply
+    need to select the sibling of that radio-input class which is radio-label, then select its chlid
+    which is radio-button using the sibling selector " ~ " because thats the one we want to change*/ }
+  .form__group:not(:last-child) {
+    margin-bottom: 2rem; }
+  .form__input {
+    font-size: 1.5rem;
+    font-family: inherit;
+    color: inherit;
+    padding: 1.5rem 2rem;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    border-bottom: 3px solid transparent;
+    width: 90%;
+    display: block;
+    transition: all .3s; }
+    .form__input:focus {
+      /*this is for people that uses the Tab button to move inside the page, 
+            in order to indicate which part of the page the user is on*/
+      outline: none;
+      box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+      border-bottom: 3px solid #55c57a; }
+    .form__input:focus:invalid {
+      /* the invalid element will be selected when there is an error with the input
+            for example a missing input, or an email without the "@" symbole, in this case we will add
+            an orange solid line under the input box*/
+      border-bottom: 3px solid #ff7730; }
+    .form__input::-webkit-input-placeholder {
+      /* the is a pseudo elements are defined with " :: " and they represent things
+            that arent actually on the web page, this one is used to style the color of the placeholder*/
+      color: #999; }
+  .form__label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-left: 2rem;
+    margin-top: .7rem;
+    display: block;
+    transition: all .3s; }
+  .form__input:placeholder-shown + .form__label {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4rem); }
+  .form__radio-group {
+    width: 49%;
+    display: inline-block; }
+  .form__radio-input {
+    display: none; }
+  .form__radio-label {
+    font-size: 1.6rem;
+    cursor: pointer;
+    position: relative;
+    padding-left: 4.5rem; }
+  .form__radio-button {
+    height: 3rem;
+    width: 3rem;
+    border: 5px solid #55c57a;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: -.4rem; }
+    .form__radio-button::after {
+      content: "";
+      display: block;
+      height: 1.3rem;
+      width: 1.3rem;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #55c57a;
+      opacity: 0;
+      transition: opacity .2s; }
+  .form__radio-input:checked ~ .form__radio-label .form__radio-button::after {
+    opacity: 1;
+    /* we just need to make the green dot inside the green circle visible 
+        in order to give the impression that we selected a button*/ }
+
 .story {
   width: 75%;
   margin: 0 auto;
@@ -478,3 +573,22 @@ body {
 .section-stories {
   padding: 15rem 0;
   position: relative; }
+
+.section-book {
+  padding: 15rem 0;
+  background-image: linear-gradient(to right bottom, #7ed56f, #28b485); }
+
+.book {
+  background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 50%, transparent 50%), url(../img/nat-10.jpg);
+  /* this will inset the image and fuse it with
+                                      linear gradient with the with the white shape, with the tilted line in the middle
+                                      created by the "105deg value", the first half will be the transparent color with
+                                      oppacity .9 and stops at 50% and the second is the color transparent and starts
+                                      at 50% */
+  background-size: 100%;
+  border-radius: 3px;
+  box-shadow: 0 0.15rem 4rem rgba(40, 180, 133, 0.2);
+  height: 50rem; }
+  .book__form {
+    width: 50%;
+    padding: 6rem; }
