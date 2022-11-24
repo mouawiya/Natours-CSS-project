@@ -1,0 +1,65 @@
+.footer {
+    background-color: $color-grey-dark-3;
+    padding: 10rem 0;
+    font-size: 1.4rem;
+    color: $color-grey-light-1;
+
+    &__logo-box {
+        text-align: center; // center the box that contains the logo
+        margin-bottom: 8rem; // give the box containing the logo a margging bottom
+    }
+
+    &__logo {
+        width: 15rem;   // the width of the logo
+        height: auto;   // the height of the logo adjusted to the width
+    }
+
+    // add the line above the navigation links
+    &__navigation {
+        border-top: 1px solid $color-grey-dark; // the styling of the line
+        padding-top: 2rem;  // the distance between the line and the text
+        display: inline-block; /*this will limit the length of the line only above the navigation items*/
+    }
+
+    &__list {
+        list-style: none; // remove the navigation styling of the list
+    }
+
+    &__item {
+        display: inline-block; // in order to get the items next to each other
+
+        // in order to give a marggin right to the items and create space between them
+        &:not(:last-child) {
+            margin-right: 1.5rem;
+        }
+    }
+
+    &__link {
+
+        //style in the link and visited state
+        &:link,
+        &:visited {
+            color: $color-grey-light-1; // color of the text
+            background-color: $color-grey-dark-3;   //this is added so when we hover on a link its box cover the background text (e.g hover over Advanced CSS and SASS in footer)
+            text-decoration: none; // no default text decoration
+            text-transform: uppercase; 
+            display: inline-block; 
+            transition: all .2s;    // this is used to smooth the transform function below of the rotate and scale
+        }
+
+        // style when we hover or click on the link in the footer
+        &:hover,
+        &:active {
+            color: $color-primary; // change color to green
+            box-shadow: 0 1rem 2rem rgba($color-black, .4); // add box shadows
+            transform: rotate(5deg) scale(1.3); // rotate and scale it a bit
+        }
+    }
+
+    &__copyright {
+        border-top: 1px solid $color-grey-dark; 
+        padding-top: 2rem; 
+        width: 80%;
+        float: right; // to dadd the even space between the image in the footer and the the copyright section
+    }
+}
