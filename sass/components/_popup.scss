@@ -1,0 +1,114 @@
+.popup {
+
+    // to cover the entire page with black transparent background
+
+    height: 100vh;
+    width: 100%;
+    
+    position: fixed; // ir orer to make the boox doesn't move when the user scrol
+    top: 0;
+    left: 0;
+    background-color: rgba($color-black, .8);
+    z-index: 3000;
+
+    //make the popup invisible and disapear at the start
+    opacity: 0;
+    visibility: hidden;
+
+    //smooth the transition of the popup
+    transition: all .3s;
+
+    &__content {
+        @include abscenter;
+
+        width: 75%;
+        background-color: $color-white;
+        box-shadow: 0 2rem 4rem rgba($color-black, $alpha: .2);
+        border-radius: 3px;
+        display: table; // in order for the left and right to be of same height
+        overflow: hidden; // keep the raduis of the corners when with the images
+
+        // we need to add the same translate of " abscenter " because it is not possible to have two different transform over the same element
+        opacity: 0; // it start invisible
+        transform: translate(-50%, -50%) scale(.25); // it start with half the size then grow to full size
+        transition: all .4s .2s; // smooth the transition of the popup, the .2s is a delay to alow the black backround to come in first
+    }
+
+    &__left {
+        width: 33.3333333%;
+        display: table-cell; // in order to get both left and right section with the same height
+    }
+
+    &__right {
+        
+        width: 66.6666667%;
+        display: table-cell; // in order to get both left and right section with the same height
+        vertical-align: middle; /* center the right section in the middle verticly of the section, it can only be used
+        with the table-cell */
+        padding: 3rem 5rem;
+        
+    }
+
+    &__img {
+        display: block;
+        width: 100%;
+        
+    }
+
+    &__text { 
+        font-size: 1.4rem;
+        margin-bottom: 4rem; // create the space between the section and the text
+
+        //used to make the column work on mozila
+        -moz-column-count: 2;
+        column-gap: 4rem;
+        column-rule: 1px solid $color-grey-light-2;
+
+        // since we used the table-cell we can use these below to create two different column
+        column-count: 2;
+        column-gap: 4rem;
+        column-rule: 1px solid $color-grey-light-2;
+
+        // used to make the hyphens works on different web browsers
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        -webkit-hyphens: auto;
+        // use hyphenation in the text on the condition to specify the language in html (lang="en")
+        hyphens: auto;
+    }
+
+    // open states
+    // to make the popup appear once we click the button since it is connected with the href
+    &:target {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    // add the zoom in transition of the popup 
+    &:target &__content {
+        opacity: 1; // for visibility
+        transform:  translate(-50%, -50%) scale(1); // for the normal scaling of the popup
+    }
+
+    // styling the closing button to close the popup section
+    &__close {
+
+        &:link,
+        &:visited {
+            color: $color-grey-dark;
+            position: absolute;
+            top: 2.5rem;
+            right: 2.5rem;
+            font-size: 3rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all .2s;
+            //position the X symbole correctly in th corner of the popup
+            line-height: 1;
+        }
+
+        &:hover {
+            color: $color-primary;
+        }
+    }
+}
