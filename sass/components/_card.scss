@@ -19,7 +19,7 @@
         overflow: hidden; /* this is used keep the border radius of the sides since it ot overlapped and lost
          by the blend between images and backscreen*/
         box-shadow: 0 1.5rem 4rem rgba($color-black, $alpha: .15);
-
+        
         &--front {
             background-color: $color-white; // we don't put rotate here because its the front side
         }
@@ -81,29 +81,30 @@
         top: 12rem;
         right: 2rem;
         width: 75%;
-    }
-
-    &__heading-span {
-        padding: 1rem 1.5rem; // create space so the head is written in two lines
-        -webkit-box-decoration-break: clone;
-        box-decoration-break: clone; /* apply all the declarations in the selector (only the padding in this case)
-         to all of the boxes that are created by an element*/
-        &--1 {
-            background-image: linear-gradient(to right bottom, 
-            rgba($color-secondary-light, .85), 
-            rgba($color-secondary-dark, .85));
-        }
-
-        &--2 {
-            background-image: linear-gradient(to right bottom, 
-            rgba($color-primary-light, .85), 
-            rgba($color-primary-dark, .85));
-        }
-
-        &--3 {
-            background-image: linear-gradient(to right bottom, 
-            rgba($color-tertiary-light, .85), 
-            rgba($color-tertiary-dark, .85));
+        
+        &-span {
+            
+            padding: 1rem 1.5rem; // create space so the head is written in two lines
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone; /* apply all the declarations in the selector (only the padding in this case)
+             to all of the boxes that are created by an element */
+            &--1 {
+                background-image: linear-gradient(to right bottom, 
+                rgba($color-secondary-light, .85), 
+                rgba($color-secondary-dark, .85));
+            }
+    
+            &--2 {
+                background-image: linear-gradient(to right bottom, 
+                rgba($color-primary-light, .85), 
+                rgba($color-primary-dark, .85));
+            }
+    
+            &--3 {
+                background-image: linear-gradient(to right bottom, 
+                rgba($color-tertiary-light, .85), 
+                rgba($color-tertiary-dark, .85));
+            }
         }
     }
 

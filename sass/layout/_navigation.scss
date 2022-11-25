@@ -1,0 +1,181 @@
+.navigation {
+    &__checkbox {
+        // hide the checkbox since it is linked to the label
+        display: none;
+    }
+
+    &__button {
+
+        // the white button that will be on top of the green
+        background-color: $color-white;
+        // needs to be larger in order to cover it
+        height: 7rem; 
+        width: 7rem;
+        //same position as the green one
+        position: fixed;
+        // since it is larger its location needs to be modified to 6 instead of 6.5 rem
+        top: 6rem;
+        right: 6rem;
+        // to make the round shape
+        border-radius: 50%;
+        z-index: 2000;
+        //add a shadow under the button
+        box-shadow: 0 1rem 3rem rgba($color-black, .1);
+        // to center the lines inside the white button 
+        text-align: center;
+        cursor: pointer;
+    }
+
+    &__background {
+
+        // creating a green circle behind a white one that expands awhen we click the button
+        height: 6rem;
+        width: 6rem;
+        border-radius: 50%; // to make the round shape
+        position: fixed; // similar to absolute position but itfixate the position of the green circle in the top right corner
+        top: 6.5rem; // the marging from the top of the circle
+        right: 6.5rem;  // the marging from the right of the circle
+        background-image: radial-gradient($color-primary-light, $color-primary-dark);   // coloring the ciclre with radial gradient that starts from the center and spread out
+        z-index: 1000; // make it on top of all other element of the page.
+        // make the green background transition
+        // the cubic-bezier is a function that specify how much change accur over time (the speed of the animation)
+        // easings.net and cubic-bezier.com are two site used to modify and test the cubic-bezier function
+        transition: transform 0.8s cubic-bezier(.86, 0, 0.07, 1); 
+        
+    }
+
+    &__nav {
+
+        // the green background that occupy the entire page once we click the navigation button
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1500;
+     
+        // to make the navigation section invisible before clicking the button
+        opacity: 0;
+        width: 0;
+        transition: all .8s cubic-bezier(.68, -0.55, 0.265, 1.55);
+    }
+
+    &__list {
+
+        //positioning the list in the center
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%); 
+        list-style: none; // remove the bullet of the list
+        text-align: center; 
+        width: 100%;
+    }
+
+    &__item {
+
+        // modify the distance between the rem
+        margin: 1rem;
+    }
+
+    &__link {
+
+        &:link,
+        &:visited {
+        display: inline-block; // for the paddding to work properly and the transform translateX to work
+        // styling the font of list
+        font-size: 3rem;
+        font-weight: 300;
+        color: $color-white;
+        padding: 1rem 2rem;
+        text-decoration: none; // remove the purple link the default
+        text-transform: uppercase;
+
+        background-image: linear-gradient(120deg,  transparent 0%, transparent 50%, $color-white 50%);
+        background-size: 220%;
+        transition: all .4s;
+
+        span {
+            margin-right: 1.5rem;
+            display: inline-block;
+        }
+        }
+
+        &:hover,
+        &:active {
+            background-position: 100%;
+            color: $color-primary;
+            transform: translateX(1rem);
+        }
+    }
+
+    //  make the background appear and disspear when we click the menu button
+    &__checkbox:checked ~ &__background {
+        transform: scale(80);
+    }
+
+    //  make the navigation items appear and disspear when we click the menu button
+    &__checkbox:checked ~ &__nav {
+        opacity: 1;
+        width: 100%;
+    }
+
+    //styling of te icon
+    &__icon {
+
+        // 
+        position: relative;
+        margin-top: 3.5rem;
+        // the first "&" is for the span which is represented by a thin line
+        // the before and after are for the second thin lines, in order to create three lines
+        &,
+        &::before,
+        &::after {
+            width: 3rem;
+            height: 2px;
+            background-color: $color-grey-dark-3;
+            display: inline-block;
+        }
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            // smooth the transition of spacing between the lines when we hover over the button
+            transition: all .2s;
+        }
+
+        &::before { top: -.8rem; }
+        &::after {top: .8rem;}
+    }
+
+    // spacing between the first line and the middle one when we hover over the button
+    &__button:hover &__icon::before {
+        top: -1rem;
+    }
+
+    // spacing between the last line and the middle one when we hover over the button
+    &__button:hover &__icon::after {
+        top: 1rem;
+    }
+
+    // deleting the midle line when we click the button
+    // when the checkbox is selected, then we select the child (__icon) of its brother (__button) to modify
+    &__checkbox:checked + &__button &__icon {
+        background-color: transparent;
+    }
+
+    // rotate the top and bottom lines to form a cross
+
+    // rotate top line
+    &__checkbox:checked + &__button &__icon::before {
+        top: 0; // move the line to the center
+        transform: rotate(135deg);
+    }
+
+    // rotate bottom line
+    &__checkbox:checked + &__button &__icon::after {
+        top: 0; // move the line to the center
+        transform: rotate(-135deg);
+    }
+}
