@@ -4,6 +4,11 @@
     font-size: 1.4rem;
     color: $color-grey-light-1;
 
+    // media queries for tab-port to adjust the position of the text
+    @include respond(tab-port) {
+        padding: 8rem 0;
+    }
+
     &__logo-box {
         text-align: center; // center the box that contains the logo
         margin-bottom: 8rem; // give the box containing the logo a margging bottom
@@ -19,6 +24,12 @@
         border-top: 1px solid $color-grey-dark; // the styling of the line
         padding-top: 2rem;  // the distance between the line and the text
         display: inline-block; /*this will limit the length of the line only above the navigation items*/
+
+        // media queries for tab-port to adjust the navigation buttons
+        @include respond(tab-port) {
+            width: 100%;
+            text-align: center;
+        }
     }
 
     &__list {
@@ -61,5 +72,11 @@
         padding-top: 2rem; 
         width: 80%;
         float: right; // to dadd the even space between the image in the footer and the the copyright section
+
+        // media queries for tab-port to adjust the navigation buttons
+        @include respond(tab-port) {
+            width: 100%;
+            float: none;
+        }
     }
 }

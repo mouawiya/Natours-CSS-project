@@ -24,6 +24,18 @@
         // to center the lines inside the white button 
         text-align: center;
         cursor: pointer;
+
+        // media queries for the white button for tab-port screens 
+        @include respond (tab-port) {
+            top: 4rem;
+            right: 4rem;
+        }
+
+        // media queries for the white button for phone screens
+        @include respond (phone) {
+            top: 3rem;
+            right: 3rem;
+        }
     }
 
     &__background {
@@ -42,6 +54,17 @@
         // easings.net and cubic-bezier.com are two site used to modify and test the cubic-bezier function
         transition: transform 0.8s cubic-bezier(.86, 0, 0.07, 1); 
         
+        // media queries for the green circle for tab-port screens
+        @include respond (tab-port) {
+            top: 4.5rem;
+            right: 4.5rem;
+        }
+
+        // media queries for the green circle for phone screens
+        @include respond (phone) {
+            top: 3.5rem;
+            right: 3.5rem;
+        }
     }
 
     &__nav {

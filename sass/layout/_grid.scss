@@ -4,6 +4,17 @@
 
     &:not(:last-child){
         margin-bottom: $gutter-vertical;
+
+        // reduce the margin bottom for tab-port screens
+        @include respond (tab-port) {
+            margin-bottom: $gutter-vertical-small;
+        }
+    }
+
+    // media queries to reduce the width of rows  in the tab-port screens
+    @include respond (tab-port) {
+        max-width: 50rem;
+        padding: 0 3rem; // adding left and right padding in order for the columns to have some space
     }
 
     @include clearfix;
@@ -14,6 +25,19 @@
 
         &:not(:last-child) {
             margin-right: $gutter-horizontal;
+
+            // media queries for tab-port
+            @include respond (tab-port) {
+                margin-right: 0; // remove right gutter
+                margin-bottom: $gutter-vertical-small; // add a margin between rows 
+            }
+        }
+
+        // media queries for the width of all columns to 100% in the tab-port and phone screens
+        // which means that all the columns transformed into rows, so the entire mobile page will have a single column
+
+        @include respond (tab-port) {
+            width: 100% !important;
         }
     }
 
