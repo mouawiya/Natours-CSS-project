@@ -9,19 +9,49 @@
         transition: all .2s;
         outline-offset: 2rem;
 
+        /* media queries to reduce the size of images in the tab port screens and float the entire section to left
+        in order to not overflow the section*/
+        
+        @include respond (tab-port){
+            float: left;
+            position: relative;
+            width: 33.3333333%;
+            box-shadow: 0 1.5rem 3rem rgba($color-black, .2);
+        }
+
         &--p1 {
             left: 0;
             top: -2rem;
+
+            // float the image to the left so it become side by side and position them correctly
+            @include respond (tab-port){
+                top: 0;
+                transform: scale(1.2);
+            }
         }
 
         &--p2 {
             right: 0;
             top: 2rem;
+
+            // float the image to the left so it become side by side and position them correctly 
+            @include respond (tab-port){
+                top: -1rem;
+                transform: scale(1.3);
+                z-index: 100; // make this picture hover the other two
+            }
         }
 
         &--p3 {
             left: 20%;
             top: 10rem;
+
+            // float the image to the left so it become side by side and remove the left padding on the last image and position them correctly
+            @include respond (tab-port){
+                top: 1rem;
+                left: 0;
+                transform: scale(1.1);
+            }
         }
 
         &:hover {

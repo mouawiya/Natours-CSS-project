@@ -12,6 +12,11 @@
     &__logo-box {
         text-align: center; // center the box that contains the logo
         margin-bottom: 8rem; // give the box containing the logo a margging bottom
+
+        // media queries to adjust the margin bottom of the logo box in the tab port screens
+        @include respond(tab-port) {
+            margin-bottom: 6rem;
+        }
     }
 
     &__logo {

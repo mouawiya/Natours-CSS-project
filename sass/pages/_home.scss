@@ -2,6 +2,11 @@
     background-color: $color-grey-light-1;
     padding: 25rem 0;
     margin-top: -20vh;
+
+    // remove some of the white space in the tab port screen in the about section
+    @include respond(tab-port) {
+        padding: 20rem 0;
+    }
 }
 
 .section-features {
@@ -17,22 +22,42 @@
     & > * {
         transform: skewY(7deg);
     }
+
+    // remove some of the white space in the tab port screen in the feature section
+    @include respond(tab-port) {
+        padding: 10rem 0;
+    }
 }
 
 .section-tours {
     background-color: $color-grey-light-1;
     padding: 25rem 0 15rem 0;
     margin-top: -10rem;
+
+    // remove some of the white space in the tab port screen in the tours section
+    @include respond(tab-port) {
+        padding: 20rem 0 10rem 0;
+    }
 }
 
 .section-stories {
     padding: 15rem 0;
     position: relative;
+
+    // remove some of the white space in the tab port screen in the stories section
+    @include respond(tab-port) {
+        padding: 10rem 0;
+    }
 }
 
 .section-book {
     padding: 15rem 0;
     background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+
+     // remove some of the white space in the tab port screen in the booking section
+     @include respond(tab-port) {
+        padding: 10rem 0;
+    }
 }
 
 .book {
