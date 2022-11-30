@@ -74,10 +74,39 @@
     border-radius: 3px;
     box-shadow: 0 .15rem 4rem rgba($color-primary-dark, 0.2);
 
-    height: 50rem;
+
+    // adjust the booking section for the tablet landscape screens
+    @include respond (tab-land){
+        background-image: linear-gradient(105deg, 
+                                      rgba($color-white, .9) 0%,
+                                      rgba($color-white, .9) 65%, 
+                                      transparent 65%), 
+                                      url(../img/nat-10.jpg); 
+
+        background-size: cover; // the picutre cover the entire element
+
+    }
+
+    // adjust the booking section for the tablet portrait screens
+    @include respond(tab-port){
+        background-image: linear-gradient(to right, 
+                                      rgba($color-white, .9) 0%,
+                                      rgba($color-white, .9) 100%), 
+                                      url(../img/nat-10.jpg);
+    }
 
     &__form {
         width: 50%;
         padding: 6rem;
+
+        // adjust the booking section for the tablet landscape screens
+        @include respond(tab-land){
+            width: 65%;
+        }
+
+        // adjust the booking section for the tablet portrait screens
+        @include respond(tab-land){
+            width: 100%;
+        }
     }
 }

@@ -17,6 +17,11 @@
         display: block;
         transition: all .3s; // this is to add a transition for the change of the lines under the input boxes
 
+        // adjust the input sections for the tab port screens
+        @include respond(tab-port){
+            width: 100%;
+        }
+
         &:focus { /*this is for people that uses the Tab button to move inside the page, 
             in order to indicate which part of the page the user is on*/
             outline: none; //remove the default black focus border
@@ -62,6 +67,12 @@
     &__radio-group {
         width: 49%;
         display: inline-block;
+
+        // adjust the radio buttons for the tab port screens
+        @include respond(tab-port){
+            width: 100%;
+            margin-bottom: 2rem;
+        }
     }
 
     &__radio-input {

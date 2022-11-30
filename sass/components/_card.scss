@@ -152,4 +152,56 @@
         font-size: 6rem;
         font-weight: 100;
     }
+
+
+
+
+
+    // making a media query to generate an entire different card style
+    @include respond (tab-port) {
+
+        height: auto; // this changed to auto because we don't have two sides that needs to be the same size
+        border-radius: 3px;
+        background-color: $color-white;
+        box-shadow: 0 1.5rem 4rem rgba($color-black, .15); // set a box shadow over the entire card
+
+        &__side {
+            height: auto;
+            position: relative; // this changed to relative because we don't have two sides on top of each other
+            box-shadow: none; // set no box shadow over the first half of the card
+
+            &--back {
+                transform: rotateY(0); // this side doesn't need to rotate because we have only one side
+                clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%); // add the slit of the bottom side of the card
+            }
+        }
+
+        &:hover &__side--front {
+            transform: rotateY(0); // we don't need to relate the front side when we hove
+        }
+
+        &__details {
+            padding: 1rem 3rem;
+        }
+
+        // we don't need to style the back side so it is not mentioned in the media queries for changes
+
+        //back side styling
+        &__cta {
+            position: relative; // this is set to relative
+            top: 0%; // changed to 0
+            left: 0%; // changed to 0
+            transform: translate(0); // we don't want any transition
+            width: 100%; // the width is set to 100%
+            padding: 7rem 4rem 4rem 4rem; // added a padding to the bottom section of the card
+        }
+
+        &__price-box {
+            margin: 3rem; // the padding is changed to 3rem, space between the word "only" and the price 
+        }
+
+        &__price-value {
+            font-size: 4rem;
+        }
+    }
 }

@@ -12,6 +12,18 @@
     font-size: $default-font-size; // the font size of the paragraph
     transform: skewX(-12deg); // to give the rectangular shape of the story box
 
+    // adjust the side and the padding for the tab-port screen
+    @include respond(tab-port){
+        width: 100%;
+        padding: 4rem;
+        padding-left: 7rem;
+    }
+
+    // remove the skewX for phone screens
+    @include respond(phone){
+        transform: skewX(0);
+    }
+
     &__shape {
         width: 15rem;
         height: 15rem;
@@ -29,6 +41,11 @@
         the "story" section*/
 
         position: relative; // we used this for the position absolute of the caption section below, it is an anchor parent
+    
+        // we needed to change the skewX
+        @include respond(phone){
+            transform: translateX(-3rem) skewX(0);
+        }
     }
 
     &__img {
@@ -40,6 +57,11 @@
 
     &__text {
         transform: skewX(12deg); /* the skewX he is used to negate the effect of skewX applied on the text by the "story" section*/
+    
+        //remove the skewX for phone size
+        @include respond(phone){
+            transform: skewX(0);
+        }
     }
 
     &__caption {
