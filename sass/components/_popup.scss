@@ -5,7 +5,7 @@
     height: 100vh;
     width: 100%;
     
-    position: fixed; // ir orer to make the boox doesn't move when the user scrol
+    position: fixed; // in orer to make the boox doesn't move when the user scroll up and down
     top: 0;
     left: 0;
     background-color: rgba($color-black, .8);
@@ -32,16 +32,18 @@
         opacity: 0; // it start invisible
         transform: translate(-50%, -50%) scale(.25); // it start with half the size then grow to full size
         transition: all .4s .2s; // smooth the transition of the popup, the .2s is a delay to alow the black backround to come in first
+        
     }
 
     &__left {
-        width: 33.3333333%;
+        width: 33.3333333333%;
         display: table-cell; // in order to get both left and right section with the same height
+
     }
 
     &__right {
         
-        width: 66.6666667%;
+        width: 66.6666666667%;
         display: table-cell; // in order to get both left and right section with the same height
         vertical-align: middle; /* center the right section in the middle verticly of the section, it can only be used
         with the table-cell */
@@ -52,6 +54,7 @@
     &__img {
         display: block;
         width: 100%;
+
         
     }
 
