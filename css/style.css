@@ -162,6 +162,9 @@ body {
 
 .u-margin-bottom-small {
   margin-bottom: 1.5rem !important; }
+  @media (max-width: 75em) {
+    .u-margin-bottom-small {
+      margin-bottom: 0rem !important; } }
 
 .u-margin-bottom-medium {
   margin-bottom: 4rem !important; }
@@ -499,6 +502,9 @@ body {
     @media (max-width: 56.25em) {
       .form__input {
         width: 100%; } }
+    @media (max-width: 75em) {
+      .form__input {
+        width: 100%; } }
     .form__input:focus {
       /*this is for people that uses the Tab button to move inside the page, 
             in order to indicate which part of the page the user is on*/
@@ -591,9 +597,31 @@ body {
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.25);
     transition: all .4s .2s; }
+    @media (max-width: 37.5em) {
+      .popup__content {
+        width: 90%; } }
+    @media (max-width: 56.25em) {
+      .popup__content {
+        width: 90%; } }
+    @media (max-width: 75em) {
+      .popup__content {
+        display: block; } }
   .popup__left {
     width: 33.3333333333%;
     display: table-cell; }
+    @media (max-width: 37.5em) {
+      .popup__left {
+        width: 0%; } }
+    @media (max-width: 56.25em) {
+      .popup__left {
+        display: block;
+        float: left;
+        width: 100%; } }
+    @media (max-width: 75em) {
+      .popup__left {
+        display: block;
+        float: left;
+        width: 100%; } }
   .popup__right {
     width: 66.6666666667%;
     display: table-cell;
@@ -601,9 +629,34 @@ body {
     /* center the right section in the middle verticly of the section, it can only be used
         with the table-cell */
     padding: 3rem 5rem; }
+    @media (max-width: 37.5em) {
+      .popup__right {
+        width: 100%;
+        padding: 1rem 1rem;
+        text-align: center; } }
+    @media (max-width: 56.25em) {
+      .popup__right {
+        width: 100%;
+        padding: 1rem 1rem;
+        text-align: center; } }
+    @media (max-width: 75em) {
+      .popup__right {
+        display: block;
+        text-align: center;
+        width: 100%;
+        padding: 1rem 1rem; } }
   .popup__img {
     display: block;
     width: 100%; }
+    @media (max-width: 37.5em) {
+      .popup__img {
+        width: 0%; } }
+    @media (max-width: 75em) {
+      .popup__img {
+        float: left;
+        height: 20%;
+        width: 40%;
+        padding-left: 20%; } }
   .popup__text {
     font-size: 1.4rem;
     margin-bottom: 4rem;
@@ -1020,6 +1073,6 @@ body {
     @media (max-width: 75em) {
       .book__form {
         width: 65%; } }
-    @media (max-width: 75em) {
+    @media (max-width: 56.25em) {
       .book__form {
         width: 100%; } }

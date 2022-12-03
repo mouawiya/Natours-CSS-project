@@ -22,6 +22,11 @@
             width: 100%;
         }
 
+        // adjust the input sections for the tab landscape screens
+        @include respond(tab-land){
+            width: 100%;
+        }
+
         &:focus { /*this is for people that uses the Tab button to move inside the page, 
             in order to indicate which part of the page the user is on*/
             outline: none; //remove the default black focus border
