@@ -14,6 +14,7 @@
         top: 0; // no top margging 
         left: 0; // no left margging
         width: 100%; // the side is as wide as the entire card
+        -webkit-backface-visibility: hidden; // to make it work for the Safari web browser
         backface-visibility: hidden; // this is for hidding the side in the back when the card flip
         border-radius: 3px;
         overflow: hidden; /* this is used keep the border radius of the sides since it ot overlapped and lost

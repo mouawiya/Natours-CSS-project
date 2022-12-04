@@ -1,5 +1,5 @@
 .header {
-    height: 95vh;
+    height: 85vh;
     background-image: linear-gradient(to right bottom, 
     rgba($color-primary-light, 0.8), 
     rgba($color-primary-dark, 0.8)) , 
@@ -12,7 +12,14 @@
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 
 
-
+    // this is a feature query used because the clip-path is not supported by the Safari browser
+    /* it is the same as the above with only difference to the height, which means if those conditions in
+    the supports header are true then we apply a height of 95vh, else the height will be 85vh as declared above*/
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); 
+        clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+        height: 95vh;
+    }
 
     /* the hero image with higher resolution is used when (screens have at least 192dpi and that have width higher 37.5em (37.5=600px/16) )
     or (screens with 125em (125=2000px/16) width)*/
@@ -20,11 +27,13 @@
     // min-width because 2000 is the minimum width that needs to exist for the media query to happen
     // 192dpi is used as a referance because that's the resolution of the Apple retina screen
     // the ' , ' between conditions represents the " or "
-    @media (min-resolution: 192dpi) and (min-width: 37.5em), 
+    // the " -webkit-min-device-pixel-ratio " is used for the Safari web browser because min-resolution is not supported, and the 2 is for when the screen is 2X
+    @media (min-resolution: 192dpi) and (min-width: 37.5em),
+           (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), 
            (min-width: 125em) {
         background-image: linear-gradient(to right bottom, 
-          rgba($color-secondary-light, 0.8), 
-          rgba($color-secondary-dark, 0.8)) , 
+          rgba($color-primary-light, 0.8), 
+          rgba($color-primary-dark, 0.8)) , 
           url(../img/hero.jpg);
     }
    

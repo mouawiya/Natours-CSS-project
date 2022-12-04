@@ -18,6 +18,14 @@
     //smooth the transition of the popup
     transition: all .3s;
 
+    // the @supports is a media query that test if the web browser able to run specific features
+    // make the back drop of the popup blurred and less dark
+    @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        background-color: rgba($color-black, .3);
+    }
+
     &__content {
         @include abscenter;
 
