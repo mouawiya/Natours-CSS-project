@@ -40,3 +40,10 @@ body {
         padding: 0; // delete the padding for tablet portrait screens
     }
 }
+
+
+// specific style when selecting a paragraph or a word
+::selection {
+    background-color: $color-primary;
+    color: $color-white;
+}

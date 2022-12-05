@@ -159,8 +159,9 @@
 
 
     // making a media query to generate an entire different card style
-    @include respond (tab-port) {
-
+    //@include respond (tab-port) {
+    @media only screen and (max-width: 56.25em), only screen and (hover:none){ // hover:none is for touch screen devices
+        
         height: auto; // this changed to auto because we don't have two sides that needs to be the same size
         border-radius: 3px;
         background-color: $color-white;

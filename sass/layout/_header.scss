@@ -28,15 +28,16 @@
     // 192dpi is used as a referance because that's the resolution of the Apple retina screen
     // the ' , ' between conditions represents the " or "
     // the " -webkit-min-device-pixel-ratio " is used for the Safari web browser because min-resolution is not supported, and the 2 is for when the screen is 2X
-    @media (min-resolution: 192dpi) and (min-width: 37.5em),
-           (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), 
-           (min-width: 125em) {
+    
+    @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+           only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), 
+           only screen and (min-width: 125em) {
         background-image: linear-gradient(to right bottom, 
           rgba($color-primary-light, 0.8), 
           rgba($color-primary-dark, 0.8)) , 
           url(../img/hero.jpg);
     }
-   
+    // the only screen protects the page to be printed
 
 
 
